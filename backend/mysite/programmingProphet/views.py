@@ -59,11 +59,24 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     # comment/<str:commentTitle>/<str:title>/
     def get(self, request, *args, **kwargs):
-        pass
+        attTitle = request.build_absolute_uri().split('/', -1)[-2]
+        commentTitile = request.build_absolute_uri().split('/', -1)[-3]
+        comment = Comment.objects.filter(
+            attractionTitle=attTitle, commentTitle=commentTitile)
+        return (CommentSerializers(comment).data)
 
     # comment/<str:commentTitle>/<str:title>/
     def post(self, request, *args, **kwargs):
-        pass
+        RequestData = request.data.copy()
+        url = request.build_absolute_uri()
+        attractionTitle = url.split('/', -1)[-2]
+        commentTitle = url.split('/', -1)[-3]
+        comment = RequestData.get('comment', None)
+
+        Comment.objects.create(
+            attractionTitle=attractionTitle, commentTitle=commentTitle, 
+            comment=comment)
+        return Response('comment succeed!', 200)
 
 
 class RateViewSet(viewsets.ModelViewSet):

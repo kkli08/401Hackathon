@@ -12,7 +12,7 @@ class AttractionSerializers(serializers.ModelSerializer):
 class AttractionImageSerializers(serializers.ModelSerializer):
     class Meta:
         model = AttractionImage
-        fields = ['title', 'image']
+        fields = ['attractionTitle', 'image']
 
 
 class CommentSerializers(serializers.ModelSerializer):
