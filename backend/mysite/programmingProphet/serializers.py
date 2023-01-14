@@ -6,22 +6,22 @@ from .models import *
 class AttractionSerializers(serializers.ModelSerializer):
     class Meta:
         model = Attraction
-        field = ['type', 'title', 'descriptions', 'location', 'comments', 'avgrate']
+        fields = ['type', 'title', 'descriptions', 'location', 'comments', 'avgrate']
 
 
 class AttractionImageSerializers(serializers.ModelSerializer):
     class Meta:
         model = AttractionImage
-        field = ['title', 'image']
+        fields = ['title', 'image']
 
 
 class CommentSerializers(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        field = ['type', 'attractionTitle', 'comment']
+        fields = ['type', 'attractionTitle', 'comment']
 
 
 class RateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Rate
-        field = ['type', 'attractionTitle', 'rate']
+        fields = ['type', 'attractionTitle', 'rate']

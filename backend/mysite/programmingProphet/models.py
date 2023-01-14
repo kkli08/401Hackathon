@@ -3,6 +3,9 @@ from email.policy import default
 # Create your models here.
 
 
+def default_list():
+    return []
+    
 class Attraction(models.Model):
     type = 'Attraction'
 

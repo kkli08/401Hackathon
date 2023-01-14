@@ -1,4 +1,4 @@
-from views import *
+from .views import *
 from django.urls import path
 
 urlpatterns = [
@@ -15,5 +15,5 @@ urlpatterns = [
     path('comments/<str:title>/',
          CommentViewSet.as_view({'get': 'get_all_comments'})),
     # rate
-    path('rate/'),
+#     path('rate/'),
 ]
