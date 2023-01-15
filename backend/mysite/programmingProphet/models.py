@@ -10,6 +10,7 @@ class Attraction(models.Model):
     type = 'Attraction'
 
     title = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='')
     descriptions = models.CharField(max_length=255, default='')
     location = models.CharField(max_length=255, default='')
     comments = models.JSONField(default=default_list)
