@@ -13,6 +13,8 @@ const Education = lazy(()=>import("./views/Education"))
 const Food = lazy(()=>import("./views/Food"))
 const Landscape = lazy(()=>import("./views/Landscape"))
 
+const DetailAttraction = lazy(()=>import("./views/DetailAttraction"))
+
 const withLoadingComponent = (comp) => (
   <React.Suspense fallback={<div>Loading...</div>}>
     {comp}
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
       {
         path:"/Landscape",
         element: withLoadingComponent(<Landscape />)
+      },
+      {
+        path:"/DetailAttraction",
+        element: withLoadingComponent(<DetailAttraction />)
       }
     ],
   }
