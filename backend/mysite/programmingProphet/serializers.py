@@ -6,7 +6,7 @@ from .models import *
 class AttractionSerializers(serializers.ModelSerializer):
     class Meta:
         model = Attraction
-        fields = ['type', 'title', 'descriptions', 'location', 'comments', 'avgrate']
+        fields = ['type', 'title', 'name', 'descriptions', 'location', 'comments', 'avgrate']
 
 
 class AttractionImageSerializers(serializers.ModelSerializer):
