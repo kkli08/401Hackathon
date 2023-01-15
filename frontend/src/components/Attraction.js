@@ -15,18 +15,17 @@ const Attraction = (props) => {
 
     let navigate = useNavigate(); 
     const handleClick = () =>{ 
-        console.log(props.title);
+        console.log(props.api);
         let path = `/DetailAttraction`; 
         navigate(path, 
             {
-                state: {value}
+                state: {api: props.api}
             });
     }
     return (
     <div>
         <div className="card">
         <h2>{props.title}</h2>
-        <h4>{props.location}</h4>
         <div className="actions">
             <button className="btn" onClick={handleClick}>Detail</button>
         </div>

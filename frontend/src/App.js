@@ -20,8 +20,6 @@ const items = [
   getItem('Landscape', '/Landscape', <CameraOutlined />),
   getItem('Team', 'sub1', <TeamOutlined />, [
     getItem('Damian Li', '5', <GithubOutlined />),
-    getItem('Jaden Huang', '6'),
-    getItem('Yu Liu', '7'),
   ]),
 ];
 const App = () => {
