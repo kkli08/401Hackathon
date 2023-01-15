@@ -1,7 +1,10 @@
-import { CameraOutlined, CoffeeOutlined, ReadOutlined, TeamOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { Outlet, useNavigate } from "react-router-dom"
+import { CameraOutlined, CoffeeOutlined, ReadOutlined, TeamOutlined, EnvironmentOutlined, GithubOutlined, AlipayOutlined, ZhihuOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useState } from 'react';
+import Attraction from './components/Attraction';
 const { Header, Content, Footer, Sider } = Layout;
+
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -11,12 +14,12 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem('Edmonton', '1', <EnvironmentOutlined />),
-  getItem('Food', '2', <CoffeeOutlined />),
-  getItem('Education', '3', <ReadOutlined />),
-  getItem('Landscape', '4', <CameraOutlined />),
+  getItem('Edmonton', '/Edmonton', <EnvironmentOutlined />),
+  getItem('Food', '/Food', <CoffeeOutlined />),
+  getItem('Education', '/Education', <ReadOutlined />),
+  getItem('Landscape', '/Landscape', <CameraOutlined />),
   getItem('Team', 'sub1', <TeamOutlined />, [
-    getItem('Damian Li', '5'),
+    getItem('Damian Li', '5', <GithubOutlined />),
     getItem('Jaden Huang', '6'),
     getItem('Yu Liu', '7'),
   ]),
@@ -26,12 +29,22 @@ const App = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const navigateTo = useNavigate();
+  const menuClick = (e)=>{
+    console.log("clicked navibar No.", e.key);
+
+    // 点击跳转路由
+    navigateTo(e.key);
+  }
+
   return (
     <Layout
       style={{
         minHeight: '100vh',
       }}
     >
+      {/* left side navibar */}
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div
           style={{
@@ -40,23 +53,33 @@ const App = () => {
             background: 'rgba(255, 255, 255, 0.2)',
           }}
         >
-          <h1 style={{color:'white',
+          {/* <h1 style={{color:'white',
                       zIndex:1,
                       fontSize:15,
                       textAlign:'center',
-                      justifyContent:'center'}}>Programming Prophet</h1>
+                      justifyContent:'center',
+                      fontFamily:'papyrus'}}>Programming Prophet</h1> */}
           </div>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
       </Sider>
+      {/* right side content */}
       <Layout className="site-layout">
+        {/* right side header */}
         <Header 
           style={{
             padding: 0,
             background: colorBgContainer,
           }}
-          
-        />
+        >
+          <h1 style={{color:'black',
+                      zIndex:1,
+                      fontSize:30,
+                      textAlign:'center',
+                      justifyContent:'center',
+                      fontFamily:'papyrus'}}>Programming Prophet</h1>
+        </Header>  
         
+        {/* right side content */}
         <Content
           style={{
             margin: '0 16px',
@@ -67,8 +90,7 @@ const App = () => {
               margin: '16px 0',
             }}
           >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <Breadcrumb.Item>Attractions</Breadcrumb.Item>
           </Breadcrumb>
           <div
             style={{
@@ -77,9 +99,11 @@ const App = () => {
               background: colorBgContainer,
             }}
           >
-            Bill is a cat.
+          {/* 内容 */}
+            <Outlet />
           </div>
         </Content>
+        {/* right side footer */}
         <Footer
           style={{
             textAlign: 'center',
